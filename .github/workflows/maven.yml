@@ -17,7 +17,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -30,9 +29,8 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn clean test -DXmlFile=testng_dockerC_parallel.xml
-
-    - name: archive artifacts
+    - name: Archive artifacts
       uses: actions/upload-artifact@v3
       with:
-	      name: sparkHtml
-	      path: ./reports/spark.html
+        name: sparkHtml
+        path: ./reports/spark.html
