@@ -19,7 +19,7 @@ public class DriverFactory {
 
     public static void openBrowser(String browser) throws MalformedURLException {
         WebDriver driver = null;
-        //DesiredCapabilities cap = new DesiredCapabilities();
+        DesiredCapabilities cap = new DesiredCapabilities();
 
 
         if(browser.contains("chrome")){
@@ -30,7 +30,7 @@ public class DriverFactory {
             //WebDriverManager.chromedriver().driverVersion("93.0.4577.63");
 
             if(App.enableBrowserOptions.equalsIgnoreCase("true")){
-                coptions = getChromeOptions();
+                coptions = getChromeOptions(cap);
             }
 
             if(App.platform.equalsIgnoreCase("local")){
@@ -76,8 +76,20 @@ public class DriverFactory {
         PageDriver.getInstance().setDriver(driver);
 
     }
+    
+    static ChromeOptions getChromeOptions(DesiredCapabilities cap){
+        ChromeOptions co = new ChromeOptions();
+        co.addArguments("--headless=new"); //when on githubActions
+        co.addArguments("--disable-gpu");
+        co.addArguments("--no-sandbox");
+        //co.setBinary("path of chrome app");
+        //co.setBrowserVersion("116.0");
+        cap.setCapability(ChromeOptions.CAPABILITY, co);
+        co.merge(cap);
+        return co;
+    }
 
-    static ChromeOptions getChromeOptions(){
+/*    static ChromeOptions getChromeOptions(){
         ChromeOptions co = new ChromeOptions();
         co.addArguments("--headless=new"); //when on githubActions
         co.addArguments("--disable-gpu");
@@ -88,7 +100,7 @@ public class DriverFactory {
         //co.merge(cap);
         return co;
     }
-
+*/
     static FirefoxOptions getFFOptions(){
         FirefoxOptions fo = new FirefoxOptions();
         fo.addArguments("--headless"); //when on githubActions

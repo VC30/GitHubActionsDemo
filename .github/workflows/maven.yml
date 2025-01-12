@@ -28,8 +28,8 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn clean test -DXmlFile=testng_dockerC_parallel.xml
-    - name: Archive artifacts
+      run: mvn clean test -DXmlFile=testng_dockerC_parallel.xml -DenableBrowserOptions=true -Dmaven.test.failure.ignore=true #the last piece is to alllow the code move ...
+    - name: Archive artifacts                                                                                                #...to the next line even if there is failure
       uses: actions/upload-artifact@v3
       with:
         name: sparkHtml

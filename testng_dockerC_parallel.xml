@@ -1,4 +1,4 @@
-<!-- 
+
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="MySuite" parallel="tests">
     <test name="chrome_Regression" preserve-order="true" parallel="classes">
@@ -18,4 +18,3 @@
         </classes>
     </test>
 </suite>
--->
